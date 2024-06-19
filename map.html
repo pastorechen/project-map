@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Map of CBMmart Projects</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map { height: 600px; width: 100%; }
+    </style>
+</head>
+<body>
+    <h1>Map of CBMmart Projects</h1>
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([20, -80], 3); // 设置地图初始视角
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // 定义地点数组
+var locations = [
+            {
+                lat: 40.64106500703086, lng: -73.98362995155705, 
+                title: 'Show Room-Pastore', 
+                description: 'cabinetry, staircase, railings',
+                image: 'images/New York-Show room (1).jpg'
+            },        
+
+            {
+                lat: 37.650210678124175, lng: -122.10590934802954, 
+                title: 'WIC-Pastore', 
+                description: 'WIC-Pastore。',
+                image: 'images/Hesperian closets (1).jpg'
+            },        
+
+            {
+    lat: 45.42480315760768, 
+    lng: -122.69398159786661,
+    title: 'Renovation-Pastore',
+    description: 'Renovation project in Portland.',
+    image: 'images/cameo.jpg'
+}
+
+        ];
+
+        // 遍历地点数组，添加标记和信息窗口
+        locations.forEach(function(location) {
+            var marker = L.marker([location.lat, location.lng]).addTo(map)
+                .bindPopup('<div><h3>' + location.title + '</h3><img src="' + location.image + '" alt="' + location.title + '" width="200"></div>');
+        });
+    </script>
+</body>
+</html>
